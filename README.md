@@ -1,104 +1,163 @@
 <p align="center">
-<img src="https://i.imgur.com/Clzj7Xs.png" alt="osTicket logo"/>
+  <img src="https://i.imgur.com/Clzj7Xs.png" alt="osTicket logo"/>
 </p>
-<h1>osTicket - Prerequisites and Installation</h1>
-This tutorial outlines the prerequisites and installation of the open-source help desk ticketing system osTicket.<br />
 
-<h2>Environments and Technologies Used</h2>
+<h1 align="center">osTicket - Prerequisites and Installation</h1>
+<p align="center">A step-by-step guide to installing and configuring the open-source help desk ticketing system, osTicket.</p>
+<hr/>
 
-- Microsoft Azure (Virtual Machines/Computer)
-- Remote Desktop
-- Internet Information Services (IIS)
+<h2>🌐 Environments and Technologies Used</h2>
+<ul>
+  <li>Microsoft Azure (Virtual Machines)</li>
+  <li>Remote Desktop</li>
+  <li>Internet Information Services (IIS)</li>
+</ul>
 
-<h2>Operating Systems Used </h2>
+<h2>💻 Operating System</h2>
+<ul>
+  <li>Windows 10 Pro (21H2)</li>
+</ul>
 
-- Windows 10</b> (21H2)
+<h2>📝 Prerequisites</h2>
+<ul>
+  <li>Virtual Machine setup on Azure</li>
+  <li>Remote Desktop Connection</li>
+  <li>IIS</li>
+  <li>osTicket installation files</li>
+  <li>PHP and MySQL</li>
+</ul>
 
-<h2>List of Prerequisites</h2>
+<hr/>
 
-- Connect Virtual Machine to Remote Desktop
-- Item 2
-- Item 3
-- Item 4
-- Item 5
+<h2>🚀 Installation Steps</h2>
 
-<h2>Installation Steps</h2>
-
+<h3>1. Setting Up the Virtual Machine</h3>
 <p>
-I began by setting up a virtual machine in Azure, starting with the configuration of key settings. This included creating a resource group, assigning a name to the virtual machine, and selecting Windows 10 Pro as the operating system image.
+  Begin by creating a virtual machine in Microsoft Azure:
 </p>
+<ul>
+  <li>Create a resource group.</li>
+  <li>Assign a name to the virtual machine and select <b>Windows 10 Pro</b> as the operating system.</li>
+  <li>Create an administrator account for Remote Desktop access.</li>
+  <li>Ensure the licensing option is selected to avoid validation errors.</li>
+</ul>
 <p align="center">
-<img src="https://github.com/user-attachments/assets/4398b003-6d37-45a8-8da7-ddf71c5815d0" height="65%" width="65%"/>
+  <img src="https://github.com/user-attachments/assets/4398b003-6d37-45a8-8da7-ddf71c5815d0" alt="Azure VM Setup" width="600"/>
 </p>
-<br />
+<hr/>
 
+<h3>2. Connecting to the VM via Remote Desktop</h3>
 <p>
-Next, I created an administrator account for remote desktop access, and ensured that the licensing option was selected to avoid a validation error when continuing.
-
+  Use the public IP address of your VM to connect via Remote Desktop:
 </p>
+<ul>
+  <li>Open Remote Desktop Connection.</li>
+  <li>Enter the public IP address of the VM.</li>
+  <li>Optionally, assign a user-friendly name to the connection for better management.</li>
+</ul>
 <p align="center">
-<img src="https://github.com/user-attachments/assets/89b898db-3c37-4c13-aea7-195e187d36db" height="65%" width="65%"/>
+  <img src="https://github.com/user-attachments/assets/eb7a4a3f-06fb-4bc9-9e16-9aee60740549" alt="Remote Desktop Connection" width="600"/>
 </p>
-<br />
+<hr/>
 
+<h3>3. Downloading and Extracting osTicket Files</h3>
 <p>
-Moving forward, I added the virtual machine to Remote Desktop using its public IP address. To simplify management in complex environments, I recommend assigning a user-friendly name, as shown in the example below, to easily distinguish between machines..
+  Once inside the VM:
 </p>
+<ul>
+  <li>Download the osTicket installation files.</li>
+  <li>Extract the files to your desktop or another easily accessible folder.</li>
+</ul>
 <p align="center">
-<img src="https://github.com/user-attachments/assets/eb7a4a3f-06fb-4bc9-9e16-9aee60740549" height="80%" width="80%"/>
+  <img src="https://github.com/user-attachments/assets/7a71765d-c3e8-4708-9f8a-3ec04d021684" alt="osTicket Files" width="600"/>
 </p>
-<br />
+<hr/>
+
+<h3>4. Enabling IIS and Setting Up Your Web Server</h3>
 <p>
-At this Point I'm inside my Virtual Machine.
+  Enable IIS (Internet Information Services):
 </p>
-<p align="center">
-<img src="https://github.com/user-attachments/assets/a31ecdf4-353a-4586-a814-3eb31bbdce06" height="80%" width="80%"/>
-</p>
-<br />
+<ul>
+  <li>Navigate to Control Panel → Programs and Features → Turn Windows features on or off.</li>
+  <li>Check the boxes for <b>Internet Information Services (IIS)</b> and <b>CGI</b>.</li>
+</ul>
 <p>
-  
-After that I downloaded the files neccessary to setup osTicket within my virtual machine, after that ill extract my zip file onto my desktop for easy access.
+  After enabling IIS, test the setup by navigating to <b>127.0.0.1</b> in your browser. You should see the default IIS page.
 </p>
 <p align="center">
-<img src="https://github.com/user-attachments/assets/7a71765d-c3e8-4708-9f8a-3ec04d021684" height="80%" width="80%"/>
+  <img src="https://github.com/user-attachments/assets/0a0b48e1-3abd-43eb-9848-fe22258cb8a7" alt="IIS Default Page" width="600"/>
 </p>
-<br />
+<hr/>
 
-<p>The next step is to enable IIS(Internet Information Services) as well as enabling CGI. completing this will allow my machine to act as a web server.</p>
-<p align="center">
-<img src="https://github.com/user-attachments/assets/0a0b48e1-3abd-43eb-9848-fe22258cb8a7" height="80%" width="80%"/>
+<h3>5. Installing PHP and MySQL</h3>
+<p>
+  Install the necessary dependencies for osTicket:
 </p>
-<br />
+<ul>
+  <li>Create a <code>PHP</code> folder in <code>C:\</code>, and extract the PHP files into this folder.</li>
+  <li>Install MySQL and set up the username and password as <b>root</b>.</li>
+  <li>Optionally, document credentials securely for future reference.</li>
+</ul>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/000a3d21-cac8-4ffe-873d-e403a84de915" alt="MySQL Setup" width="600"/>
+</p>
+<hr/>
 
-<p>Once that is finished I'm able to load the IIS default page located at 127.0.0.1</p>
-<p align="center">
-<img src="https://github.com/user-attachments/assets/b4caa0bf-8a96-44e0-a46e-231346f10aed" height="80%" width="80%"/>
+<h3>6. Registering PHP in IIS</h3>
+<p>
+  Configure IIS to work with PHP:
 </p>
-<br />
-<!--
-<p></p>
+<ul>
+  <li>Open IIS Manager as an administrator.</li>
+  <li>Register the PHP executable in IIS.</li>
+  <li>Reload IIS to apply the changes.</li>
+</ul>
 <p align="center">
-<img src="" height="80%" width="80%"/>
+  <img src="https://github.com/user-attachments/assets/92ae1dfc-ebc6-4e98-ab51-532175041466" alt="Register PHP in IIS" width="600"/>
 </p>
-<br />
--->
-<p>Moving forward I need a few dependencys installed, I'll start by creating a PHP folder inside my windows(C:) drive, from there I'll extract my PHP manager file in the folder.</p>
-<p align="center">
-<img src="https://github.com/user-attachments/assets/a17fb94a-1e90-4bb5-9bbb-ddb2efc63814" height="80%" width="80%"/>
-</p>
-<br />
+<hr/>
 
-<p>After that I'll install my VC_redist file, and MySQL, these wil be used to store Tickets within a database. From there I'll laumch the Configuration Wizard and set both Username and Password to 'Root'</p>
-💡: Even though I have my User and Password set as something fairly simple, I like to keep documentation of all of my logins in a sticky note.
-<p align="center">
-<img src="https://github.com/user-attachments/assets/000a3d21-cac8-4ffe-873d-e403a84de915" height="80%" width="80%"/>
+<h3>7. Final osTicket Setup</h3>
+<p>
+  Complete the osTicket configuration:
 </p>
-<br />
-
-<p>After that step is complete I'll open IIS as an Admin and register PHP from within IIS, then I'll reload to save the change I made.</p>
-
-<p></p>
+<ul>
+  <li>Unzip osTicket and move the <code>upload</code> folder to <code>C:\inetpub\wwwroot</code>. Rename it to <code>osTicket</code>.</li>
+  <li>Rename <code>ost-sampleconfig.php</code> to <code>ost-config.php</code> and set its permissions to allow full control.</li>
+  <li>Enable <b>php_imap.dll</b>, <b>php_intl.dll</b>, and <b>php_opcache.dll</b> in the PHP manager.</li>
+</ul>
 <p align="center">
-<img src="https://github.com/user-attachments/assets/92ae1dfc-ebc6-4e98-ab51-532175041466" height="80%" width="80%"/>
+  <img src="https://github.com/user-attachments/assets/a9a9e76d-7df6-4dae-a688-92aa9c36f487" alt="osTicket Setup" width="600"/>
 </p>
-<br />
+<hr/>
+
+<h3>8. Database Configuration with HeidiSQL</h3>
+<p>
+  Set up the database connection:
+</p>
+<ul>
+  <li>Install and open HeidiSQL.</li>
+  <li>Create a new session using the username and password <b>root</b>.</li>
+  <li>Verify the connection to the database and observe osTicket traffic.</li>
+</ul>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c260b20a-1e50-4591-b28d-9e6e44abbf75" alt="HeidiSQL Configuration" width="600"/>
+</p>
+<hr/>
+
+<h3>9. Accessing osTicket</h3>
+<p>
+  Log in to the osTicket user portal and start managing tickets. Customize as needed!
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/76b0d7e2-99e8-460b-bd7a-3c7e3ee753c2" alt="osTicket Portal" width="600"/>
+</p>
+
+<hr/>
+
+<h2>🧹 Clean-Up Steps</h2>
+<ul>
+  <li>Delete: <code>C:\inetpub\wwwroot\osTicket\setup</code></li>
+  <li>Set permissions to “Read Only” for: <code>C:\inetpub\wwwroot\osTicket\include\ost-config.php</code></li>
+  <li>Log in to the osTicket Admin Panel: <a href="http://localhost/osTicket/scp/login.php">http://localhost/osTicket/scp/login.php</a></li>
+</ul>
